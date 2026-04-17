@@ -2,13 +2,16 @@
 import { useState, useEffect } from "react";
 import { Personaje } from "../tipos/personajes";
 import { BattleResult } from "../tipos/batallas";
-
+import { useBatallaStore } from "@/store/batallaStore";
 
 export default function SimuladorBatalla() {
   const [personajes, setPersonajes] = useState<Personaje[]>([]); // Lista de personajes disponibles
   const [seleccionados, setSeleccionados] = useState<number[]>([]); // ID de los personajes seleccionados
   const [resultado, setResultado] = useState<BattleResult | null>(null); // Resultado de la batalla
   const [cargando, setCargando] = useState(false); // Estado de carga
+
+  // Tonanos la funcion del estado global de zustand
+  const incrementarActualizar = useBatallaStore((state) => state.incrementarActualizar)
 
   // Carga todos los personajes al entrar
   useEffect(() => {
@@ -49,6 +52,7 @@ export default function SimuladorBatalla() {
     const data = await res.json();
     setResultado(data);
     setCargando(false);
+    incrementarActualizar(); // ACA AVISAMOS AL ESTADO GLOBLAL
   }
 
   return (

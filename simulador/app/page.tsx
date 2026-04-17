@@ -6,10 +6,11 @@ export default function Pagina() {
   return (
     <main>
       <h1>Zombies vs Robots</h1>
-      <Link href="/batalla">Ir a la Batalla</Link>
       <hr />
       <FormularioPersonaje />
       <hr />
+      <h1>Batallar</h1>
+      <Link href="/batalla">Ir a la Batalla</Link>
       <ListaPersonajes />
     </main>
   );
