@@ -35,7 +35,8 @@ export default function SimuladorBatalla() {
       return;
     }
     setCargando(true);
-
+    
+    // Llama a la API para ejecutar la batalla con los IDs seleccionados
     const res = await fetch("/api/batalla", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

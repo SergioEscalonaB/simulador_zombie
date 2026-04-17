@@ -1,5 +1,3 @@
-
-
 import { Personaje } from './personajes';
 
 export interface BattleResult {

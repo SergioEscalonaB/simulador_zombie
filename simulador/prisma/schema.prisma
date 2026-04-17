@@ -19,6 +19,10 @@ model Character {
   attack  Int
   defense Int
   speed   Int
+  //Las relaciones
+  battles1  Battle[] @relation("character1")
+  battles2  Battle[] @relation("character2")
+  battlesWon Battle[] @relation("winner")
 }
 
 model Battle {
@@ -27,6 +31,10 @@ model Battle {
   character2Id  Int
   winnerId      Int
   turns         Int
+  //Las relaciones
+  character1   Character @relation("character1", fields: [character1Id], references: [id])
+  character2   Character @relation("character2", fields: [character2Id], references: [id])
+  winner       Character @relation("winner",     fields: [winnerId],     references: [id])
 }
 
 
