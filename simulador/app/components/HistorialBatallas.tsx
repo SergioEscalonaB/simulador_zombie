@@ -1,18 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useBatallaStore } from "@/store/batallaStore";
+import { Historial } from "../tipos/historial";
 
-// El tipo de cada batalla con los personajes completos
-type Batalla = {
-    id: number;
-    turns: number;
-    character1: { id: number; name: string; type: string };
-    character2: { id: number; name: string; type: string };
-    winner:     { id: number; name: string; type: string };
-};
 
 export default function HistorialBatallas() {
-    const [batallas, setBatallas] = useState<Batalla[]>([]);
+    const [batallas, setBatallas] = useState<Historial[]>([]);
 
     // Escuchamos al contador global de zustand
     const actualizar = useBatallaStore((state) => state.actualizar)
