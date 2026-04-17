@@ -56,46 +56,66 @@ export default function SimuladorBatalla() {
   }
 
   return (
-    <div>
-      <h2>Selecciona 2 personajes para batallar</h2>
-      <p>Seleccionados: {seleccionados.length}/2</p>
+    <div className="container mt-3">
+        <div className="card shadow-sm">
+            <div className="card-header bg-warning text-dark py-2">
+                <h5 className="mb-0">
+                    <i className="bi bi-crosshair me-2"></i>
+                    Selecciona 2 personajes
+                    <span className="badge bg-dark ms-2">{seleccionados.length}/2</span>
+                </h5>
+            </div>
 
-      {/* Lista de personajes clickeables */}
-      <ul>
-        {personajes.map((p) => (
-          <li
-            key={p.id}
-            onClick={() => toggleSeleccion(p.id)}
-            style={{
-              cursor: "pointer",
-              // Resaltar cuando se selecciona
-              background: seleccionados.includes(p.id) ? "yellow" : "transparent",
-              padding: "8px",
-              margin: "4px",
-              border: "1px solid #ccc",
-            }}
-          >
-            <strong>{p.name}</strong> — {p.type} |
-            Vida: {p.health} Ataque: {p.attack} Defensa: {p.defense} Velocidad: {p.speed}
-          </li>
-        ))}
-      </ul>
+            <div className="card-body p-2">
+                <div className="row g-2">
+                    {personajes.map((p) => (
+                        <div key={p.id} className="col-md-6 col-lg-4">
+                            <div
+                                onClick={() => toggleSeleccion(p.id)}
+                                className={`card cursor-pointer ${seleccionados.includes(p.id) ? "bg-warning bg-opacity-25 border-warning" : "border"}`}
+                                style={{ cursor: "pointer" }}
+                            >
+                                <div className="card-body py-2 px-3">
+                                    <div className="d-flex justify-content-between align-items-center">
+                                        <strong className="small">{p.name}</strong>
+                                        <span className={`badge bg-${p.type === "zombie" ? "success" : "info"} small`}>
+                                            {p.type}
+                                        </span>
+                                    </div>
+                                    <div className="small text-muted mt-1">
+                                        ❤️{p.health} ⚔️{p.attack} 🛡️{p.defense} ⚡{p.speed}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
 
-      <button
-        onClick={ejecutarBatalla}
-        disabled={seleccionados.length !== 2 || cargando}
-      >
-        {cargando ? "Calculando..." : "⚔️ Batallar"}
-      </button>
+                <div className="d-grid gap-2 mt-3">
+                    <button
+                        onClick={ejecutarBatalla}
+                        disabled={seleccionados.length !== 2 || cargando}
+                        className="btn btn-danger btn-sm"
+                    >
+                        {cargando ? (
+                            <>⏳ Calculando...</>
+                        ) : (
+                            <>⚔️ Batallar</>
+                        )}
+                    </button>
+                </div>
 
-      {/* Muestra el resultado */}
-      {resultado && (
-        <div>
-          <h3>Ganador: {resultado.winner?.name}</h3>
-          <p>Tipo: {resultado.winner?.type}</p>
-          <p>Turnos: {resultado?.turns}</p>
+                {resultado && (
+                    <div className="alert alert-success mt-3 mb-0 py-2 text-center">
+                        <strong>🏆 Ganador: {resultado.winner?.name}</strong>
+                        <br />
+                        <small className="text-muted">
+                            Tipo: {resultado.winner?.type} | {resultado?.turns} turnos
+                        </small>
+                    </div>
+                )}
+            </div>
         </div>
-      )}
     </div>
-  );
+);
 }

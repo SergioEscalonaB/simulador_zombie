@@ -45,64 +45,102 @@ export default function FormularioPersonaje() {
   }
 
   return (
-    <div>
-      <h2>Crear Personaje</h2>
+    <div className="card shadow-sm">
+        <div className="card-header bg-success text-white py-2">
+            <h5 className="mb-0">
+                <i className="bi bi-person-plus-fill me-2"></i>
+                Crear Personaje
+            </h5>
+        </div>
 
-      <div>
-        <label>Nombre</label>
-        <input
-          type="text"
-          placeholder="Nombre del personaje"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-        />
-      </div>
+        <div className="card-body py-3">
+            <form onSubmit={handleSubmit}>
+                <div className="row g-2">
+                    <div className="col-md-4">
+                        <label className="small text-muted mb-1 d-block">Nombre</label>
+                        <input
+                            type="text"
+                            className="form-control form-control-sm"
+                            placeholder="Ej: Juancho"
+                            value={nombre}
+                            onChange={(e) => setNombre(e.target.value)}
+                            required
+                        />
+                    </div>
 
-      <div>
-        <label>Tipo</label>
-        <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
-          <option value="zombie">Zombie</option>
-          <option value="robot">Robot</option>
-        </select>
-      </div>
+                    <div className="col-md-4">
+                        <label className="small text-muted mb-1 d-block">Tipo</label>
+                        <select 
+                            className="form-select form-select-sm"
+                            value={tipo} 
+                            onChange={(e) => setTipo(e.target.value)}
+                        >
+                            <option value="zombie">🧟 Zombie</option>
+                            <option value="robot">🤖 Robot</option>
+                        </select>
+                    </div>
 
-      <div>
-        <label>Vida</label>
-        <input
-          type="number"
-          value={vida}
-          onChange={(e) => setVida(Number(e.target.value))}
-        />
-      </div>
+                    <div className="col-md-1">
+                        <label className="small text-muted mb-1 d-block">❤️ Vida</label>
+                        <input
+                            type="number"
+                            className="form-control form-control-sm"
+                            placeholder="100"
+                            value={vida}
+                            onChange={(e) => setVida(Number(e.target.value))}
+                            required
+                            min="1"
+                        />
+                    </div>
 
-      <div>
-        <label>Ataque</label>
-        <input
-          type="number"
-          value={ataque}
-          onChange={(e) => setAtaque(Number(e.target.value))}
-        />
-      </div>
+                    <div className="col-md-1">
+                        <label className="small text-muted mb-1 d-block">⚔️ Ataque</label>
+                        <input
+                            type="number"
+                            className="form-control form-control-sm"
+                            placeholder="50"
+                            value={ataque}
+                            onChange={(e) => setAtaque(Number(e.target.value))}
+                            required
+                            min="1"
+                        />
+                    </div>
 
-      <div>
-        <label>Defensa</label>
-        <input
-          type="number"
-          value={defensa}
-          onChange={(e) => setDefensa(Number(e.target.value))}
-        />
-      </div>
+                    <div className="col-md-1">
+                        <label className="small text-muted mb-1 d-block">🛡️ Defensa</label>
+                        <input
+                            type="number"
+                            className="form-control form-control-sm"
+                            placeholder="30"
+                            value={defensa}
+                            onChange={(e) => setDefensa(Number(e.target.value))}
+                            required
+                            min="1"
+                        />
+                    </div>
 
-      <div>
-        <label>Velocidad</label>
-        <input
-          type="number"
-          value={velocidad}
-          onChange={(e) => setVelocidad(Number(e.target.value))}
-        />
-      </div>
+                    <div className="col-md-1">
+                        <label className="small text-muted mb-1 d-block">⚡ Velocidad</label>
+                        <input
+                            type="number"
+                            className="form-control form-control-sm"
+                            placeholder="20"
+                            value={velocidad}
+                            onChange={(e) => setVelocidad(Number(e.target.value))}
+                            required
+                            min="1"
+                        />
+                    </div>
 
-      <button onClick={handleSubmit}>Crear Personaje</button>
+                    <div className="col-12 mt-2">
+                        <button type="submit" className="btn btn-success btn-sm w-100">
+                            <i className="bi bi-plus-circle me-1"></i>
+                            Crear Personaje
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-  );
+);
 }
